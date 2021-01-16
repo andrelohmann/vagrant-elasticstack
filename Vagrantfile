@@ -19,8 +19,8 @@ Vagrant.configure(2) do |config|
   config.hostmanager.include_offline = true
 
   config.vm.define "server" do |s|
-    #config.vm.box = "ubuntu/xenial64" # 16.04
     s.vm.box = "ubuntu/bionic64" # 18.04
+    #s.vm.box = "ubuntu/focal64" # 20.04
     # set memory to 2048m
     s.vm.provider "virtualbox" do |vb|
       vb.memory = vagrant_config['server']['memory']
@@ -48,8 +48,8 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.define "client" do |c|
-    #config.vm.box = "ubuntu/xenial64" # 16.04
     c.vm.box = "ubuntu/bionic64" # 18.04
+    #c.vm.box = "ubuntu/focal64" # 20.04
     # set memory to 2048m
     c.vm.provider "virtualbox" do |vb|
       vb.memory = vagrant_config['client']['memory']
