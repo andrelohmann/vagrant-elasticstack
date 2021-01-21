@@ -1,0 +1,44 @@
+---
+
+- name: install packages necessary for testing
+  apt:
+    name: "{{ packages }}"
+    state: latest
+    dpkg_options: 'force-confnew,force-confdef'
+    autoclean: yes
+    autoremove: yes
+    update_cache: yes
+    cache_valid_time: 3600
+  vars:
+    packages:
+    - apache2-utils
+
+- name: copy httptest command
+  copy:
+    src: "httptest"
+    dest: "/usr/local/bin/httptest"
+    owner: root
+    group: root
+    mode: 0755
+
+- name: add httptest systemd unit file
+  copy:
+    src: httptest.service
+    dest: /etc/systemd/system/httptest.service
+    mode: 0644
+
+- name: just force systemd to reread configs
+  systemd:
+    daemon_reload: yes
+
+- name: enable httptest
+  systemd:
+    name: httptest
+    enabled: yes
+
+- name: start httptest
+  systemd:
+    name: httptest
+    state: started
+
+...

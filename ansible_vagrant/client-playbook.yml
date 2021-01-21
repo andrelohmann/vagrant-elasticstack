@@ -11,6 +11,9 @@
     - jq
     - python3-pip
     required_python_packages: []
+    prometheus_node_exporter_listen_ip: 0.0.0.0
+    prometheus_nginx_exporter_listen_ip: 0.0.0.0
+    prometheus_nginx_exporter_scrape_uri: http://127.0.0.1/server-status
 
   pre_tasks:
   - name: check for file custom_vars.yml
@@ -26,6 +29,11 @@
   - andrelohmann.root_colored_prompt
   - default_tasks
   - andrelohmann.beats
+  - beats_patch
+  - nginx_tasks
+  - nginx_tests
+  - andrelohmann.prometheus_node_exporter
+  - andrelohmann.prometheus_nginx_exporter
 
 
 ...

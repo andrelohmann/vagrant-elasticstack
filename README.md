@@ -45,3 +45,9 @@ Kibana will be listening on the server public ip on port 5601.
 ```
 http://SERVER.DOMAIN:5601
 ```
+
+Prometheus will be listening on the server public ip on port 9090.
+
+```
+http://SERVER.DOMAIN:9090
+```

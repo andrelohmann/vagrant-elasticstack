@@ -11,6 +11,44 @@
     - jq
     - python3-pip
     required_python_packages: []
+    # https://prometheus.io/docs/prometheus/latest/getting_started/
+    prometheus_config:
+      global:
+        scrape_interval: 15s
+      external_labels:
+        monitor: codelab-monitor
+      scrape_configs:
+      - job_name: prometheus
+        scrape_interval: 5s
+        static_configs:
+        - targets:
+          - 'localhost:9090'
+          labels:
+            group: prometheus
+      - job_name: node_exporter
+        scrape_interval: 5s
+        static_configs:
+        - targets:
+          - 'localhost:9100'
+          labels:
+            group: 'prometheus'
+        - targets:
+          - 'client.lokal:9100'
+          labels:
+            group: 'nginx'
+      - job_name: nginx_exporter
+        scrape_interval: 5s
+        static_configs:
+        - targets:
+          - 'client.lokal:9113'
+          labels:
+            group: 'nginx'
+    prometheus_rules:
+      groups:
+      - name: cpu-node
+        rules:
+        - record: 'job_instance_mode:node_cpu_seconds:avg_rate5m'
+          expr: 'avg by (job, instance, mode) (rate(node_cpu_seconds_total[5m]))'
 
   pre_tasks:
   - name: check for file custom_vars.yml
@@ -26,6 +64,14 @@
   - andrelohmann.root_colored_prompt
   - default_tasks
   - andrelohmann.elasticstack
+  - andrelohmann.prometheus
+  - andrelohmann.prometheus_node_exporter
 
+  tasks:
+
+  - name: restart prometheus after each change
+    systemd:
+      name: prometheus
+      state: restarted
 
 ...
