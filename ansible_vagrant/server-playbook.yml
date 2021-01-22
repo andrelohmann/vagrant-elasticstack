@@ -25,6 +25,11 @@
           - 'localhost:9090'
           labels:
             group: prometheus
+      - job_name: 'grafana_metrics'
+        scrape_interval: 15s
+        scrape_timeout: 5s
+        static_configs:
+        - targets: ['localhost:3000']
       - job_name: node_exporter
         scrape_interval: 5s
         static_configs:
@@ -49,6 +54,16 @@
         rules:
         - record: 'job_instance_mode:node_cpu_seconds:avg_rate5m'
           expr: 'avg by (job, instance, mode) (rate(node_cpu_seconds_total[5m]))'
+    grafana_additional_configs:
+    - section: null
+      option: app_mode
+      value: production
+    - section: server
+      option: http_addr
+      value: 0.0.0.0
+    - section: server
+      option: http_port
+      value: 3000
 
   pre_tasks:
   - name: check for file custom_vars.yml
@@ -66,6 +81,7 @@
   - andrelohmann.elasticstack
   - andrelohmann.prometheus
   - andrelohmann.prometheus_node_exporter
+  - andrelohmann.grafana_oss
 
   tasks:
 

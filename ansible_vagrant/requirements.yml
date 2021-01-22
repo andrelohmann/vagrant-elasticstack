@@ -1,4 +1,5 @@
 ---
+roles:
 - andrelohmann.root_colored_prompt
 - andrelohmann.zulu_openjdk
 - andrelohmann.elasticstack
@@ -6,4 +7,8 @@
 - andrelohmann.prometheus
 - andrelohmann.prometheus_node_exporter
 - andrelohmann.prometheus_nginx_exporter
+- andrelohmann.grafana_oss
+# This will be necessary when Ansible 2.10 is released
+#collections:
+#- community.general # a dependency for the andrelohmann.grafana_oss role
 ...

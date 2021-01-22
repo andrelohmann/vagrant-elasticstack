@@ -53,6 +53,8 @@ Vagrant.configure(2) do |config|
         ansible.install = false
         ansible.playbook = "ansible_vagrant/server-playbook.yml"
         ansible.galaxy_role_file = "ansible_vagrant/requirements.yml"
+        #Uncomment when ansible 2.10 is available
+        #ansible.galaxy_command = "sudo ansible-galaxy install -r %{role_file} --force; sudo ansible-galaxy collection install -r %{role_file} --force"
         ansible.extra_vars = {
           ansible_python_interpreter:"/usr/bin/python3"
         }
@@ -63,6 +65,8 @@ Vagrant.configure(2) do |config|
         ansible.install_mode = :default
         ansible.playbook = "ansible_vagrant/server-playbook.yml"
         ansible.galaxy_role_file = "ansible_vagrant/requirements.yml"
+        #Uncomment when ansible 2.10 is available
+        #ansible.galaxy_command = "sudo ansible-galaxy install -r %{role_file} --force; sudo ansible-galaxy collection install -r %{role_file} --force"
         ansible.extra_vars = {
           ansible_python_interpreter:"/usr/bin/python3"
         }
@@ -108,6 +112,8 @@ Vagrant.configure(2) do |config|
         ansible.install = false
         ansible.playbook = "ansible_vagrant/client-playbook.yml"
         ansible.galaxy_role_file = "ansible_vagrant/requirements.yml"
+        #Uncomment when ansible 2.10 is available
+        #ansible.galaxy_command = "sudo ansible-galaxy install -r %{role_file} --force; sudo ansible-galaxy collection install -r %{role_file} --force"
         ansible.extra_vars = {
           ansible_python_interpreter:"/usr/bin/python3"
         }
@@ -118,6 +124,8 @@ Vagrant.configure(2) do |config|
         ansible.install_mode = :default
         ansible.playbook = "ansible_vagrant/client-playbook.yml"
         ansible.galaxy_role_file = "ansible_vagrant/requirements.yml"
+        #Uncomment when ansible 2.10 is available
+        #ansible.galaxy_command = "sudo ansible-galaxy install -r %{role_file} --force; sudo ansible-galaxy collection install -r %{role_file} --force"
         ansible.extra_vars = {
           ansible_python_interpreter:"/usr/bin/python3"
         }

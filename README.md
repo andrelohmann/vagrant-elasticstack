@@ -6,6 +6,12 @@
  * Andre Lohmann
    <lohmann.andre (at) gmail (dot) com>
 
+<!---
+
+There is some stuff waiting to be uncommented, when Ansible 2.10 is released
+
+--->
+
 ## content
 
 Vagrant template, to deploy an elasticstack (elasticsearch + kibana + beats) test stack.
