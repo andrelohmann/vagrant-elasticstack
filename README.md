@@ -40,6 +40,8 @@ vagrant ssh server
 vagrant ssh client
 ```
 
+#### Elasticstack
+
 Elasticsearch will be listening on the server public ip on port 9200.
 
 ```
@@ -52,8 +54,20 @@ Kibana will be listening on the server public ip on port 5601.
 http://SERVER.DOMAIN:5601
 ```
 
+#### Prometheus
+
 Prometheus will be listening on the server public ip on port 9090.
 
 ```
 http://SERVER.DOMAIN:9090
 ```
+
+#### Grafana
+
+Grafana will be listening on the server public ip on port 3000.
+
+```
+http://SERVER.DOMAIN:3000
+```
+
+The initial username and password are admin:admin.

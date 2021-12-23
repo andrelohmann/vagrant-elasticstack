@@ -1,13 +1,13 @@
 ---
 configs:
-  client:
-    memory: "1024"
-    cpus: "1"
-    ip: "192.168.213.223"
-    domain: client.lokal
   server:
     memory: "6144"
     cpus: "4"
-    ip: "192.168.213.213"
+    ip: "192.168.56.101"
     domain: elastic.lokal
+  client:
+    memory: "2048"
+    cpus: "2"
+    ip: "192.168.56.102"
+    domain: client.lokal
 ...

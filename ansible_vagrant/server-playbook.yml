@@ -11,6 +11,7 @@
     - jq
     - python3-pip
     required_python_packages: []
+    zulu_openjdk_version: "17"
     # https://prometheus.io/docs/prometheus/latest/getting_started/
     prometheus_config:
       global:
