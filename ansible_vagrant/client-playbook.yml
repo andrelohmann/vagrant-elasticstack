@@ -8,6 +8,7 @@
     - git
     - tcptraceroute
     - nmap
+    - net-tools
     - jq
     - python3-pip
     required_python_packages: []

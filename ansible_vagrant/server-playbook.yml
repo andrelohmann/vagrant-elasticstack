@@ -8,9 +8,33 @@
     - git
     - tcptraceroute
     - nmap
+    - net-tools
     - jq
     - python3-pip
     required_python_packages: []
+    percona_mysql_version: '8' #'5.7'
+    percona_mysql_root_password: vagrant
+    mysql_grants_databases:
+    - name: icinga2
+      encoding: utf8
+    - name: icingaweb2
+      encoding: utf8
+    mysql_grants_users:
+    - name: icinga2
+      password: icinga2
+      host: localhost
+      priv: 'icinga2.*:ALL'
+      state: present
+    - name: icingaweb2
+      password: icingaweb2
+      host: localhost
+      priv: 'icingaweb2.*:ALL'
+      state: present
+    icingaweb2_initialize_basicauth: True
+    mailhog_smtp_port: 1025
+    mailhog_web_port: 8025
+    mailhog_proxy_apache: True
+    mailhog_proxy_domain: mail.elastic.lokal
     zulu_openjdk_version: "17"
     # https://prometheus.io/docs/prometheus/latest/getting_started/
     prometheus_config:
@@ -79,10 +103,15 @@
   roles:
   - andrelohmann.root_colored_prompt
   - default_tasks
+  - andrelohmann.percona_mysql
+  - andrelohmann.mysql_grants
+  - andrelohmann.icinga2
   - andrelohmann.elasticstack
   - andrelohmann.prometheus
   - andrelohmann.prometheus_node_exporter
   - andrelohmann.grafana_oss
+  - andrelohmann.mailhog
+  - mailhog_config
 
   tasks:
 

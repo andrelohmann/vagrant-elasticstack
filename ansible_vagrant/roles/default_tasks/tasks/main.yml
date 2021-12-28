@@ -24,11 +24,4 @@
     group: vagrant
     mode: 0644
 
-- name: Create a 2048-bit SSH key for user vagrant in /home/vagrant/.ssh/id_rsa
-  user:
-    name: vagrant
-    generate_ssh_key: yes
-    ssh_key_bits: 2048
-    ssh_key_file: .ssh/id_rsa
-
 ...

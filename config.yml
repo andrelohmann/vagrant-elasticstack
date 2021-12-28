@@ -5,6 +5,10 @@ configs:
     cpus: "4"
     ip: "192.168.56.101"
     domain: elastic.lokal
+    aliases:
+    - mail.elastic.lokal
+    - icinga.elastic.lokal
+    - grafana.elastic.lokal
   client:
     memory: "2048"
     cpus: "2"

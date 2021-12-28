@@ -37,13 +37,14 @@ Vagrant.configure(2) do |config|
     # vagrant-hostmanager is necessary to update /etc/hosts on hosts and guests
     s.vm.network "private_network", ip: vagrant_config['server']['ip']
     s.vm.hostname = vagrant_config['server']['domain']
-    #s.hostmanager.aliases = %w(www.yourdomain.lokal)
+    s.hostmanager.aliases = vagrant_config['server']['aliases']
 
     # provision the vagrant machine using ansible
     # install ansible from its default repo
     s.vm.provision "shell", inline: "test -f .ssh/authorized_keys && cp --preserve=all .ssh/authorized_keys /tmp/authorized_keys" # preserve authorized_keys for `vagrant ssh` in case it already exists
     s.vm.provision "file", source: "~/.ssh", destination: ".ssh" # copy any key from the host; it is not possible to copy them as id_*, so other files might get overriden
     s.vm.provision "shell", inline: "mv /tmp/authorized_keys .ssh/" # restore any prior file
+    s.vm.provision "shell", inline: "sudo apt install swapspace -y"
 
     # Run Ansible from the Vagrant VM
     if s.vm.box == "ubuntu/focal64"
@@ -96,13 +97,13 @@ Vagrant.configure(2) do |config|
     # vagrant-hostmanager is necessary to update /etc/hosts on hosts and guests
     c.vm.network "private_network", ip: vagrant_config['client']['ip']
     c.vm.hostname = vagrant_config['client']['domain']
-    #c.hostmanager.aliases = %w(www.yourdomain.lokal)
 
     # provision the vagrant machine using ansible
     # install ansible from its default repo
     c.vm.provision "shell", inline: "test -f .ssh/authorized_keys && cp --preserve=all .ssh/authorized_keys /tmp/authorized_keys" # preserve authorized_keys for `vagrant ssh` in case it already exists
     c.vm.provision "file", source: "~/.ssh", destination: ".ssh" # copy any key from the host; it is not possible to copy them as id_*, so other files might get overriden
     c.vm.provision "shell", inline: "mv /tmp/authorized_keys .ssh/" # restore any prior file
+    c.vm.provision "shell", inline: "sudo apt install swapspace -y"
 
     # Run Ansible from the Vagrant VM
     if c.vm.box == "ubuntu/focal64"

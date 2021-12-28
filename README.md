@@ -20,9 +20,9 @@ Vagrant template, to deploy an elasticstack (elasticsearch + kibana + beats) tes
 
 ### Configuration
 
-Copy the config.yml.example to config.yml and alternate as you need it.
+Normally the System should run out of the box, but it sometimes is necessary, to customize some of the domains or IP addresses e.g.
 
-Copy ansible_vagrant/custom_vars.yml.example to ansible_vagrant/custom_vars.yml and alternate as you need it.
+In this case, please edit the files config.yml, ansible_vagrant/custom_vars.yml and ansible_vagrant/*-playbook.yml.
 
 ### Run
 
@@ -45,13 +45,13 @@ vagrant ssh client
 Elasticsearch will be listening on the server public ip on port 9200.
 
 ```
-curl -i http://SERVER.DOMAIN:9200
+curl -i http://elastic.lokal:9200
 ```
 
 Kibana will be listening on the server public ip on port 5601.
 
 ```
-http://SERVER.DOMAIN:5601
+http://elastic.lokal:5601
 ```
 
 #### Prometheus
@@ -59,7 +59,7 @@ http://SERVER.DOMAIN:5601
 Prometheus will be listening on the server public ip on port 9090.
 
 ```
-http://SERVER.DOMAIN:9090
+http://elastic.lokal:9090
 ```
 
 #### Grafana
@@ -67,7 +67,23 @@ http://SERVER.DOMAIN:9090
 Grafana will be listening on the server public ip on port 3000.
 
 ```
-http://SERVER.DOMAIN:3000
+http://grafana.elastic.lokal:3000
 ```
 
 The initial username and password are admin:admin.
+
+#### Mailhog
+
+A Mailhog instance is listening on the server as a mail catch all server.
+
+```
+http://mail.elastic.lokal
+```
+
+#### Icinga2
+
+The Icinga2 monitoring system is listening on the server under port 80.
+
+```
+http://icinga.elastic.lokal/icingaweb2
+```
