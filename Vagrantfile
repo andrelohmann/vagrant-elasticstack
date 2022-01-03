@@ -44,7 +44,6 @@ Vagrant.configure(2) do |config|
     s.vm.provision "shell", inline: "test -f .ssh/authorized_keys && cp --preserve=all .ssh/authorized_keys /tmp/authorized_keys" # preserve authorized_keys for `vagrant ssh` in case it already exists
     s.vm.provision "file", source: "~/.ssh", destination: ".ssh" # copy any key from the host; it is not possible to copy them as id_*, so other files might get overriden
     s.vm.provision "shell", inline: "mv /tmp/authorized_keys .ssh/" # restore any prior file
-    s.vm.provision "shell", inline: "sudo apt install swapspace -y"
 
     # Run Ansible from the Vagrant VM
     if s.vm.box == "ubuntu/focal64"
@@ -103,7 +102,6 @@ Vagrant.configure(2) do |config|
     c.vm.provision "shell", inline: "test -f .ssh/authorized_keys && cp --preserve=all .ssh/authorized_keys /tmp/authorized_keys" # preserve authorized_keys for `vagrant ssh` in case it already exists
     c.vm.provision "file", source: "~/.ssh", destination: ".ssh" # copy any key from the host; it is not possible to copy them as id_*, so other files might get overriden
     c.vm.provision "shell", inline: "mv /tmp/authorized_keys .ssh/" # restore any prior file
-    c.vm.provision "shell", inline: "sudo apt install swapspace -y"
 
     # Run Ansible from the Vagrant VM
     if c.vm.box == "ubuntu/focal64"

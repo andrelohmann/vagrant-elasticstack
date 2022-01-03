@@ -87,3 +87,11 @@ The Icinga2 monitoring system is listening on the server under port 80.
 ```
 http://icinga.elastic.lokal/icingaweb2
 ```
+
+#### Graphite
+
+The graphite frontend is listening on the server under port 8888. You can login by using user "root" with password "root".
+
+```
+http://icinga.elastic.lokal:8888
+```

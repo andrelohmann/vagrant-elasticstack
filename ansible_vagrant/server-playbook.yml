@@ -9,15 +9,22 @@
     - tcptraceroute
     - nmap
     - net-tools
+    - htop
     - jq
     - python3-pip
     required_python_packages: []
+    docker_users:
+    - vagrant
     percona_mysql_version: '8' #'5.7'
     percona_mysql_root_password: vagrant
     mysql_grants_databases:
     - name: icinga2
       encoding: utf8
     - name: icingaweb2
+      encoding: utf8
+    - name: reporting
+      encoding: utf8
+    - name: x509
       encoding: utf8
     mysql_grants_users:
     - name: icinga2
@@ -30,7 +37,35 @@
       host: localhost
       priv: 'icingaweb2.*:ALL'
       state: present
-    icingaweb2_initialize_basicauth: True
+    - name: reporting
+      password: reporting
+      host: localhost
+      priv: 'reporting.*:ALL'
+      state: present
+    - name: x509
+      password: x509
+      host: localhost
+      priv: 'x509.*:ALL'
+      state: present
+    icingaweb2_initialize_dbauth: True
+    icingaweb2_install_module_monitoring: True
+    icingaweb2_install_module_reporting: True
+    icingaweb2_install_module_businessprocess: True
+    icingaweb2_install_module_x509: True
+    icingaweb2_install_module_graphite: True
+    icingaweb2_graphite_web_host: localhost
+    icingaweb2_graphite_web_port: 8888
+    icingaweb2_graphite_user: root
+    icingaweb2_graphite_password: root
+    icingaweb2_install_module_elasticsearch: True
+    icingaweb2_elasticsearch_host: 192.168.56.101
+    icingabeat_api_host: localhost
+    icingabeat_api_port: 5665
+    icingabeat_api_user: icinga
+    icingabeat_api_password: icinga
+    icingabeat_api_ssl_verify: "false"
+    icingabeat_elasticsearch_host: 192.168.56.101
+    icingabeat_elasticsearch_port: 9200
     mailhog_smtp_port: 1025
     mailhog_web_port: 8025
     mailhog_proxy_apache: True
@@ -103,21 +138,25 @@
   roles:
   - andrelohmann.root_colored_prompt
   - default_tasks
-  - andrelohmann.percona_mysql
-  - andrelohmann.mysql_grants
-  - andrelohmann.icinga2
+  - andrelohmann.docker
+  - docker_graphite
   - andrelohmann.elasticstack
   - andrelohmann.prometheus
   - andrelohmann.prometheus_node_exporter
   - andrelohmann.grafana_oss
   - andrelohmann.mailhog
   - mailhog_config
+  - andrelohmann.percona_mysql
+  - andrelohmann.mysql_grants
+  - andrelohmann.icinga2
+  - icinga_configs
+  - andrelohmann.icingabeat
 
   tasks:
 
-  - name: restart prometheus after each change
-    systemd:
-      name: prometheus
-      state: restarted
+  #- name: restart prometheus after each change
+  #  systemd:
+  #    name: prometheus
+  #    state: restarted
 
 ...

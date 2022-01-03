@@ -1,0 +1,19 @@
+---
+
+- name: create the graphite folder
+  file:
+    path: /opt/graphite
+    state: directory
+
+- name: copy docker-compose.yml
+  copy:
+    src: docker-compose.yml
+    dest: /opt/graphite/docker-compose.yml
+
+- name: deploy docker-compose.yml
+  shell: docker compose up -d
+  args:
+     executable: /bin/bash
+     chdir: /opt/graphite/
+
+...

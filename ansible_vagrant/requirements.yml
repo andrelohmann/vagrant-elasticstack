@@ -12,7 +12,9 @@ roles:
 - andrelohmann.percona_mysql
 - andrelohmann.mysql_grants
 - andrelohmann.mailhog
+- andrelohmann.docker
 - andrelohmann.icinga2
+- andrelohmann.icingabeat
 # This will be necessary when Ansible 2.10 is released
 #collections:
 #- community.general # a dependency for the andrelohmann.grafana_oss role

@@ -9,6 +9,7 @@
     - tcptraceroute
     - nmap
     - net-tools
+    - htop
     - jq
     - python3-pip
     required_python_packages: []

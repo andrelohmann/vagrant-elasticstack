@@ -1,0 +1,11 @@
+---
+
+- name: copy modules/elasticsearch/eventtypes.ini
+  copy:
+    src: modules/elasticsearch/eventtypes.ini
+    dest: /etc/icingaweb2/modules/elasticsearch/eventtypes.ini
+    owner: www-data
+    group: icingaweb2
+    mode: 0660
+
+...
