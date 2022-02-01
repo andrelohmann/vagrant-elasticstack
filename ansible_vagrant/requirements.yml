@@ -1,5 +1,5 @@
 ---
-roles:
+roles: #[]
 - andrelohmann.root_colored_prompt
 - andrelohmann.zulu_openjdk
 - andrelohmann.elasticstack
@@ -9,6 +9,8 @@ roles:
 - andrelohmann.prometheus_node_exporter
 - andrelohmann.prometheus_nginx_exporter
 - andrelohmann.grafana_oss
+#- andrelohmann.influxdb_oss
+#- andrelohmann.telegraf
 - andrelohmann.percona_mysql
 - andrelohmann.mysql_grants
 - andrelohmann.mailhog

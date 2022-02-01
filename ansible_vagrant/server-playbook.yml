@@ -138,6 +138,8 @@
   roles:
   - andrelohmann.root_colored_prompt
   - default_tasks
+  #- andrelohmann.influxdb_oss
+  #- andrelohmann.telegraf
   - andrelohmann.docker
   - docker_graphite
   - andrelohmann.elasticstack
@@ -154,9 +156,9 @@
 
   tasks:
 
-  #- name: restart prometheus after each change
-  #  systemd:
-  #    name: prometheus
-  #    state: restarted
+  - name: restart prometheus after each change
+    systemd:
+      name: prometheus
+      state: restarted
 
 ...
